@@ -6,6 +6,17 @@ public class TomatoMeter {
 	private String fresh;
 	private String rotten;
 
+	public TomatoMeter(){
+		
+	}
+	
+	public TomatoMeter(String averageRating, String reviewsCounted, String fresh, String rotten) {
+		this.averageRating = averageRating;
+		this.reviewsCounted = reviewsCounted;
+		this.fresh = fresh;
+		this.rotten = rotten;
+	}
+
 	public String getAverageRating() {
 		return averageRating;
 	}

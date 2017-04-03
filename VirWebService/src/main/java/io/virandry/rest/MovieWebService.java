@@ -1,19 +1,28 @@
 package io.virandry.rest;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.jaxrs.json.annotation.JacksonFeatures;
 
 import io.virandry.model.AudienceScore;
 import io.virandry.model.Movie;
 import io.virandry.model.TomatoMeter;
 
-@XmlRootElement
 @Path("/json/movie")
 public class MovieWebService {
 
+	static Movie movie1 = new Movie(1, "KONG: SKULL ISLAND", 2017, "/jerjack/images/kong.jpg",
+				new TomatoMeter("6.6/10", "273", "212", "61"), new AudienceScore("3.7/5", "38,245"));
+	static Movie movie2 = new Movie(2, "Ghost in the Shell", 2017, "/jerjack/images/ghost.jpg",
+				new TomatoMeter("5.5/10", "159", "68", "91"), new AudienceScore("3.5/5", "28,203"));
+	
+	
 	@GET
 	@Path("/get")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -36,4 +45,18 @@ public class MovieWebService {
 
 		return movie;
 	}
+
+	@GET
+	@Path("/get/all")
+	@Produces(MediaType.APPLICATION_JSON)
+	@JacksonFeatures(serializationEnable =  { SerializationFeature.INDENT_OUTPUT })
+	public ArrayList<Movie> getMovieListinJSON() {
+
+		ArrayList<Movie> movieList = new ArrayList<Movie>();
+		
+		movieList.add(movie1);
+		movieList.add(movie2);
+		return movieList;
+	}
+
 }

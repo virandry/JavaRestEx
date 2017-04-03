@@ -3,11 +3,33 @@ package io.virandry.model;
 
 public class Movie {
 
+	private int id;
 	private String title;
 	private int year;
 	private String imagePath;
 	private TomatoMeter tomatoMeter;
 	private AudienceScore audienceScore;
+
+	public Movie(){
+		
+	}
+	
+	public Movie(int id, String title, int year, String imagePath, TomatoMeter tomatoMeter, AudienceScore audienceScore) {
+		this.id = id;
+		this.title = title;
+		this.year = year;
+		this.imagePath = imagePath;
+		this.tomatoMeter = tomatoMeter;
+		this.audienceScore = audienceScore;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getTitle() {
 		return title;
