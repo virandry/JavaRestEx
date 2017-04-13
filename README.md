@@ -4,5 +4,6 @@
 2. Jackson
 3. React
 4. Fetch
-5. Hibernate (soon)
-6. Bootstrap
+5. Hibernate OGM 5.1
+6. MongoDB
+7. JSF 2.0
