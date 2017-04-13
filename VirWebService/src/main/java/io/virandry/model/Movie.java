@@ -1,9 +1,15 @@
 package io.virandry.model;
 
 
-public class Movie {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-	private int id;
+@Entity
+public class Movie {
+	
+	@Id
+    private int id;
 	private String title;
 	private int year;
 	private String imagePath;

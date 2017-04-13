@@ -1,5 +1,8 @@
 package io.virandry.model;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class AudienceScore {
 
 	private String averageRating;
