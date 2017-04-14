@@ -9,10 +9,10 @@ public class TomatoMeter {
 	private String fresh;
 	private String rotten;
 
-	public TomatoMeter(){
-		
+	public TomatoMeter() {
+
 	}
-	
+
 	public TomatoMeter(String averageRating, String reviewsCounted, String fresh, String rotten) {
 		this.averageRating = averageRating;
 		this.reviewsCounted = reviewsCounted;

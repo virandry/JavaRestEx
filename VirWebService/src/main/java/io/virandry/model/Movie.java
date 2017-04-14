@@ -1,26 +1,52 @@
 package io.virandry.model;
 
-
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+import org.hibernate.annotations.Type;
+
+@NamedQueries({
+	@NamedQuery(
+	name = "findAllMovies",
+	query = "FROM Movie"
+	)
+})
 @Entity
 public class Movie {
-	
+
 	@Id
-    private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Type(type = "objectid")
+	private String id;
 	private String title;
 	private int year;
 	private String imagePath;
+
+	@Embedded
 	private TomatoMeter tomatoMeter;
+
+	@Embedded
 	private AudienceScore audienceScore;
 
-	public Movie(){
-		
+	public Movie() {
+
 	}
-	
-	public Movie(int id, String title, int year, String imagePath, TomatoMeter tomatoMeter, AudienceScore audienceScore) {
+
+	public Movie(String title, int year, String imagePath, TomatoMeter tomatoMeter, AudienceScore audienceScore) {
+		this.title = title;
+		this.year = year;
+		this.imagePath = imagePath;
+		this.tomatoMeter = tomatoMeter;
+		this.audienceScore = audienceScore;
+	}
+
+	public Movie(String id, String title, int year, String imagePath, TomatoMeter tomatoMeter,
+			AudienceScore audienceScore) {
 		this.id = id;
 		this.title = title;
 		this.year = year;
@@ -29,11 +55,11 @@ public class Movie {
 		this.audienceScore = audienceScore;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

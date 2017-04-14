@@ -1,24 +1,29 @@
 package io.virandry.config;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.ogm.cfg.OgmConfiguration;
+
 
 public class HibernateOGMUtil {
-	private static EntityManagerFactory entityManagerFactory = null;
+	
+	private static final SessionFactory sessionFactory = buildSessionFactory();
 
-	static {
+	private static SessionFactory buildSessionFactory() {
 		try {
-			entityManagerFactory = Persistence.createEntityManagerFactory("myPu");
-		} catch (Exception e) {
-			System.err.println("Initial EntityManagerFactory creation failed." + e);
+			Configuration configuration = new OgmConfiguration();
+			return configuration.configure().buildSessionFactory();
+		} catch (Throwable ex) {
+			System.err.println("Initial SessionFactory creation failed." + ex);
+			throw new ExceptionInInitializerError(ex);
 		}
 	}
 
-	public static EntityManagerFactory getEntityManagerFactory() {
-		return entityManagerFactory;
+	public static SessionFactory getSessionFactory() {
+		return sessionFactory;
 	}
 
-	public static void closeEntityManagerFactory() {
-		entityManagerFactory.close();
+	public static void shutdown() {
+		getSessionFactory().close();
 	}
 }
