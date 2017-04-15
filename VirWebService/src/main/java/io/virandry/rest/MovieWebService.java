@@ -1,20 +1,19 @@
 package io.virandry.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.jaxrs.json.annotation.JacksonFeatures;
 
-import io.virandry.config.HibernateOGMUtil;
+import io.virandry.config.HibernateOGMUtilEMF;
 import io.virandry.model.AudienceScore;
 import io.virandry.model.Movie;
 import io.virandry.model.TomatoMeter;
@@ -22,7 +21,7 @@ import io.virandry.model.TomatoMeter;
 @Path("/json/movie")
 public class MovieWebService {
 
-	private static Session session;
+	EntityManagerFactory entityManagerFactory = HibernateOGMUtilEMF.getEntityManagerFactory();
 
 	@GET
 	@Path("/get")
@@ -53,23 +52,21 @@ public class MovieWebService {
 	@JacksonFeatures(serializationEnable = { SerializationFeature.INDENT_OUTPUT })
 	public List<Movie> getMovieListinJSON() {
 
-		session = HibernateOGMUtil.getSessionFactory().openSession();
+		EntityManager em = entityManagerFactory.createEntityManager();
 
 		try {
-			session.beginTransaction();
-			Query query = session.getNamedQuery("findAllMovies");
+			em.getTransaction().begin();
+			Query query = em.createNamedQuery("findAllMovies");
 			@SuppressWarnings("unchecked")
-			List<Movie> movies = query.list();
-			session.flush();
-			session.getTransaction().commit();
+			List<Movie> movies = query.getResultList();
+			em.getTransaction().commit();
 			return movies;
 		} catch (RuntimeException e) {
-			session.getTransaction().rollback();
+			em.getTransaction().rollback();
 			throw e;
 		} finally {
-			session.close();
+			em.close();
 		}
-
 	}
 
 }

@@ -12,6 +12,7 @@
 		<property name="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform</property>
 		
 		<mapping class="io.virandry.model.Movie"></mapping>
-		
+		<mapping class="io.virandry.model.AudienceScore"></mapping>
+		<mapping class="io.virandry.model.TomatoMeter"></mapping>
 	</session-factory>
 </hibernate-configuration>

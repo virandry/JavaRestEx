@@ -1,5 +1,6 @@
 package io.virandry.model;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ import org.hibernate.annotations.Type;
 public class Movie {
 
 	@Id
+	@Column(name = "_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Type(type = "objectid")
 	private String id;

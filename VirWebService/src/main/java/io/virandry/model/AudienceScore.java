@@ -8,10 +8,10 @@ public class AudienceScore {
 	private String averageRating;
 	private String userRating;
 
-	public AudienceScore(){
-		
+	public AudienceScore() {
+
 	}
-	
+
 	public AudienceScore(String averageRating, String userRating) {
 		this.averageRating = averageRating;
 		this.userRating = userRating;
