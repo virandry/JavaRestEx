@@ -16,9 +16,9 @@ public class DataInsertMain {
 
 		entityManagerFactory = HibernateOGMUtilEMF.getEntityManagerFactory();
 		EntityManager em = entityManagerFactory.createEntityManager();
-		Movie movie1 = new Movie("KONG: SKULL ISLAND", 2017, "/jerjack/images/kong.jpg",
+		Movie movie1 = new Movie("KONG: SKULL ISLAND", 2017, "images/kong.png",
 				new TomatoMeter("6.6/10", "273", "212", "61"), new AudienceScore("3.7/5", "38,245"));
-		Movie movie2 = new Movie("Ghost in the Shell", 2017, "/jerjack/images/ghost.jpg",
+		Movie movie2 = new Movie("Ghost in the Shell", 2017, "images/ghost.png",
 				new TomatoMeter("5.5/10", "159", "68", "91"), new AudienceScore("3.5/5", "28,203"));
 		em.getTransaction().begin();
 		em.persist(movie1);

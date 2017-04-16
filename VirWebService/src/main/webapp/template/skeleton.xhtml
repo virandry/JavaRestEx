@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</f:facet>
+	
+	<title>Jersey + Jackson</title>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link href="style/style.css" rel="stylesheet" />
+</h:head>
+
+<h:body class="w3-light-grey w3-content" style="max-width:1600px">
+	<!-- Sidebar/menu -->
+	<ui:insert name="sidebar" >
+		<ui:include src="sidebar.xhtml" />
+	</ui:insert>
+	
+	<!-- !PAGE CONTENT! -->
+	<div class="w3-main" style="margin-left:300px">
+		<ui:insert name="header" >
+ 	  		<ui:include src="header.xhtml" />
+   		</ui:insert>
+   		<ui:insert name="content" >
+ 	  		<ui:include src="content.xhtml" />
+   		</ui:insert>
+	</div>
+	
+	<!-- Footer -->
+	<ui:insert name="footer" >
+ 		<ui:include src="footer.xhtml" />
+   	</ui:insert>
+
+
+
+	
+</h:body>
+</html>

@@ -24,7 +24,7 @@ function w3_close() {
 
 
 var cute;
-fetch('/jerjack/rest/json/movie/get/all')
+fetch('rest/json/movie/get/all')
 .then(checkStatus)
 .then(parseJSON)
 .then(function(data) {
@@ -35,6 +35,9 @@ fetch('/jerjack/rest/json/movie/get/all')
 		return React.createElement('div', {key: movie.id, className: 'w3-third w3-container w3-margin-bottom'},
 					React.createElement('div', { className: ''}, 
 						React.createElement('img', {className: 'w3-hover-opacity', src: movie.imagePath}, null),
+						React.createElement('div',{className: 'w3-container w3-teal'},
+								React.createElement('h3', {}, movie.title),
+								React.createElement('small', {}, movie.year)),
 						React.createElement('div', {className: 'w3-container w3-white'}, 
 								React.createElement('h4', {className: ''}, 'Tomato Meter'),
 								React.createElement('ul', null, 
@@ -50,6 +53,9 @@ fetch('/jerjack/rest/json/movie/get/all')
 										React.createElement('li',null, 'Average Rating: ' + movie.audienceScore.averageRating),
 										React.createElement('li',null, 'User Ratings: ' + movie.audienceScore.userRating)
 								)
+						),
+						React.createElement('div', {className: 'w3-container w3-white'},
+								React.createElement('input', {className: 'w3-button w3-teal', type: 'button', value:'Edit: '+movie.id},null)
 						)
 					)
 				)
